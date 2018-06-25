@@ -18,5 +18,12 @@ plaintext = cip.decrypt(nonce, ciphertext)
 print(plaintext)
 ```
 
+## Pip
+
+```bash
+pip install chacha20poly1305
+```
+
+
 [tlslite-ng]: https://github.com/tomato42/tlslite-ng
 
