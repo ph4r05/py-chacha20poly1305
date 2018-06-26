@@ -24,6 +24,14 @@ print(plaintext)
 pip install chacha20poly1305
 ```
 
+## Note
+
+Please note the pure python implementation probably suffers form side-channels leakage (timing, memory access).
+For constant time implementations use compiled versions:
+
+- https://github.com/ph4r05/py-trezor-crypto
+- https://github.com/AntonKueltz/rfc7539
+
 
 [tlslite-ng]: https://github.com/tomato42/tlslite-ng
 
