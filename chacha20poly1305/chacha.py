@@ -142,15 +142,20 @@ class ChaCha(object):
         encrypted_message = bytearray()
         for i, block in enumerate(plaintext[i:i+64] for i
                                   in range(0, len(plaintext), 64)):
-            key_stream = ChaCha.chacha_block(self.key,
-                                             self.counter + i,
-                                             self.nonce,
-                                             self.rounds)
-            key_stream = ChaCha.word_to_bytearray(key_stream)
+            key_stream = self.key_stream(i)
             encrypted_message += bytearray(x ^ y for x, y
                                            in izip(key_stream, block))
 
         return encrypted_message
+
+    def key_stream(self, counter):
+        """receive the key stream for nth block"""
+        key_stream = ChaCha.chacha_block(self.key,
+                                         self.counter + counter,
+                                         self.nonce,
+                                         self.rounds)
+        key_stream = ChaCha.word_to_bytearray(key_stream)
+        return key_stream
 
     def decrypt(self, ciphertext):
         """Decrypt the data"""
